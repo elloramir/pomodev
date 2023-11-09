@@ -15,15 +15,14 @@ function listenControlEvents(chron) {
 
 	// toggle playing state manually
 	$play.onclick = () => {
-		chron.toggle();
-		updatePlayButton(chron);
+		updatePlayButton(chron.toggle());
 	};
 }
 
 
-function updatePlayButton(chron) {
+function updatePlayButton(playing) {
 	const $play = document.querySelector(".chrono-control-play");
-	const icon = chron.playing ? "pause" : "play";
+	const icon = playing ? "pause" : "play";
 
 	$play.querySelector("i").className = "fa fa-" + icon;
 }
@@ -39,7 +38,7 @@ function updateChrono(chron) {
 	$chronoTask.textContent = chron.activeTask;
 
 	// propagate actual state
-	updatePlayButton(chron);
+	updatePlayButton(chron.playing);
 
 	// calculate arc path
 	{
@@ -60,7 +59,7 @@ function updateChrono(chron) {
 	$chronoArc.classList.remove("chrono-arc-relax");
 	$chronoTip.classList.remove("chrono-tip-relax");
 
-	if (chron.pomoIndex%2==1) {
+	if (chron.pomoIndex % 2 === 1) {
 		$chronoArc.classList.add("chrono-arc-relax");
 		$chronoTip.classList.add("chrono-tip-relax");
 	}

@@ -2,6 +2,7 @@
 // Use of this source code is governed by MIT
 // license that can be found in the LICENSE file.
 
+
 const SECONDS = 1000;
 const MINUTES = 60 * SECONDS;
 const CHRONO_INTERVAL = SECONDS*0.35;
@@ -31,7 +32,7 @@ Chrono.prototype.nextPomo = function(shouldDebit=true) {
 
 
 // NOTE(ellora): the interval is not precise, so we need to keep track of
-// the time based on the last time we updated the chrono.
+// the time based on the last time we've updated the chrono.
 Chrono.prototype.updateTime = function() {
 	this?.onUpdate(this);
 
