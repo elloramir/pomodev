@@ -11,7 +11,7 @@ const POMOS = [25, 5, 25, 15];
 // TODO(ellora): move from "set interval" to animation frame.
 export default function Chrono() {
 	this.pomoIndex = -1;
-    this.onUpdate = null;
+	this.onUpdate = null;
 	this.nextPomo(false);
 
 	// NOTE(ellora): yes, I know, this should be "private"...
@@ -33,7 +33,7 @@ Chrono.prototype.nextPomo = function(shouldDebit=true) {
 // NOTE(ellora): the interval is not precise, so we need to keep track of
 // the time based on the last time we updated the chrono.
 Chrono.prototype.updateTime = function() {
-    this?.onUpdate(this);
+	this?.onUpdate(this);
 
 	const now = Date.now();
 	const delta = now - (this.lastUpdate === 0 ? now : this.lastUpdate);
@@ -76,14 +76,14 @@ Chrono.prototype.isOnRelaxDebt = function() {
 
 
 Chrono.prototype.fmtEpoch = function() {
-    const epoch = this.epoch + this.relaxDebit;
+	const epoch = this.epoch + this.relaxDebit;
 
-    let minutes = Math.floor(epoch / MINUTES);
-    let seconds = Math.floor((epoch % MINUTES) / SECONDS);
+	let minutes = Math.floor(epoch / MINUTES);
+	let seconds = Math.floor((epoch % MINUTES) / SECONDS);
 
-    minutes = minutes.toString().padStart(2, "0");
-    seconds = seconds.toString().padStart(2, "0");
+	minutes = minutes.toString().padStart(2, "0");
+	seconds = seconds.toString().padStart(2, "0");
 
-    return `${minutes}:${seconds}`;
+	return `${minutes}:${seconds}`;
 }
 
