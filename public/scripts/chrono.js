@@ -6,7 +6,7 @@
 const SECONDS = 1000;
 const MINUTES = 60 * SECONDS;
 const CHRONO_INTERVAL = SECONDS*0.35;
-const POMOS = [25, 5, 25, 15];
+const POMOS = [0.1, 5, 25, 15];
 
 
 // TODO(ellora): move from "set interval" to animation frame.
