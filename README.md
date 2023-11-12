@@ -1,5 +1,5 @@
 ### 🍅 Pomodev
-I did this project due to my personal frustration with the time limit proposed by pomodoro clocks,
+I did this project ([see here](https://elloramir.github.io/pomodev/)) due to my personal frustration with the time limit proposed by pomodoro clocks,
 It's really hard to hold onto an idea, sometimes I get a little bored, but there are times when I just want to keep coding because amazing ideas pop into my head out of nowhere.
 
 ### Checklist
