@@ -18,7 +18,7 @@ window.onload = () => {
 function randomBackground() {
 	const index = Math.floor(Math.random()*10)+1;
 	const padIndex = String(index).padStart(2, "0");
-	const url = `url(/images/ground-${padIndex}.jfif)`;
+	const url = `url(./images/ground-${padIndex}.jfif)`;
 
 	document.querySelector(".blur-background").style.backgroundImage = url;
 }
