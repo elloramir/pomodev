@@ -5,8 +5,8 @@
 
 const SECONDS = 1000;
 const MINUTES = 60 * SECONDS;
-const CHRONO_INTERVAL = SECONDS*0.35;
-const POMOS = [0.1, 5, 25, 15];
+const CHRONO_INTERVAL = SECONDS*0.1;
+const POMOS = [25, 5, 25, 15];
 
 
 // TODO(ellora): move from "set interval" to animation frame.
@@ -20,11 +20,11 @@ export default function Chrono() {
 }
 
 
-Chrono.prototype.nextPomo = function(shouldDebit=true) {
+Chrono.prototype.nextPomo = function(shouldDebit=true, sign=1) {
 	this.shouldDebit = shouldDebit;
 	this.relaxDebit = 0;
 	this.playing = false;
-	this.pomoIndex = (this.pomoIndex + 1) % POMOS.length;
+	this.pomoIndex = Math.abs(this.pomoIndex + sign) % POMOS.length;
 	this.epochTarget = this.target();
 	this.epoch = this.epochTarget;
 	this.lastUpdate = 0;
@@ -51,8 +51,10 @@ Chrono.prototype.updateTime = function() {
 	this.epoch -= delta;
 
 	// when the epoch is over, we need to update the next pomo
-	if (this.epoch <= -this.relaxDebit)
+	if (this.epoch <= -this.relaxDebit) {
 		this.nextPomo();
+		this?.onFinishPomo(this);
+	}
 }
 
 
@@ -88,3 +90,10 @@ Chrono.prototype.fmtEpoch = function() {
 	return `${minutes}:${seconds}`;
 }
 
+
+Chrono.prototype.stateMessage = function() {
+	if (this.pomoIndex%2 === 0)
+		return "It's time to relax!";
+	
+	return "It's time to work!";
+}

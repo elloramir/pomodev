@@ -9,6 +9,9 @@ import Chrono from "./chrono.js";
 window.onload = () => {
 	const chron = new Chrono();
 	chron.onUpdate = updateChrono;
+	chron.onFinishPomo = browserNotification;
+
+	grantNotificationPermission();
 	updateChrono(chron);
 	listenControlEvents(chron);
 	randomBackground();
@@ -24,13 +27,44 @@ function randomBackground() {
 }
 
 
+function grantNotificationPermission() {
+	if (!("Notification" in window))
+		return;
+
+	Notification.requestPermission().then((perm) => {
+		if (perm !== "granted")
+			console.warn("Permission not granted for notification");
+	});
+}
+
+
+function browserNotification(chron) {
+	if (!("Notification" in window))
+		return;
+
+	new Notification("Pomodev Notification", {
+		body: chron.stateMessage(),
+		icon: "./images/logo.png",
+	});
+}
+
+
 function listenControlEvents(chron) {
 	const $play = document.querySelector(".chrono-control-play");
 	const $next = document.querySelector(".chrono-control-next");
+	const $prev = document.querySelector(".chrono-control-prev");
 
 	// toggle playing state manually
 	$play.onclick = () => {
 		updatePlayButton(chron.toggle());
+	};
+
+	$prev.onclick = () => {
+		chron.nextPomo(false, -1);
+	};
+
+	$next.onclick = () => {
+		chron.nextPomo(false);
 	};
 }
 
