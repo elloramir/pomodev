@@ -4,8 +4,8 @@ It's really hard to hold onto an idea, sometimes I get a little bored, but there
 
 ### Checklist
 - [x] circular chrono with elapsed time and "relax debt"
-- [ ] timer controls
-- [ ] actual cycle state (pomo,short/long break)
+- [x] timer controls
+- [x] actual cycle state (pomo,short/long break)
 - [ ] todo list (transition to minimalist chrono and dnd order)
 - [ ] current task on title bar and somewhere else on page
 - [ ] local database
